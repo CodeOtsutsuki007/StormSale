@@ -4,6 +4,14 @@
  */
 import { STELLAR_CONFIG } from "./stellar";
 
+export function getContractAddress(passphraseOrNetwork: string): string {
+  const upper = passphraseOrNetwork.toUpperCase();
+  if (upper.includes("PUBLIC") || upper.includes("MAINNET")) {
+    return "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+  }
+  return "C_TEST_STABLECOIN_ESCROW_CONTRACT_99999";
+}
+
 export const CONTRACT_ADDRESSES = {
   // Campaign Escrow Soroban Contract ID
   CAMPAIGN_ESCROW: STELLAR_CONFIG.contractId,
