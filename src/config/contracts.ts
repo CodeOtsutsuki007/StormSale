@@ -11,6 +11,23 @@ export const CONTRACT_ADDRESSES = {
   NATIVE_XLM_SAC: "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
 };
 
+export function getContractAddress(contractKey: string, networkPassphrase: string = STELLAR_CONFIG.networkPassphrase): string {
+  if (networkPassphrase === STELLAR_CONFIG.networkPassphrase) {
+    return (CONTRACT_ADDRESSES as Record<string, string>)[contractKey] || STELLAR_CONFIG.contractId;
+  }
+  return STELLAR_CONFIG.contractId;
+}
+
+export function getNetworkPassphrase(network: string): string {
+  if (network === "TESTNET" || network === "Test SDF Network ; September 2015") {
+    return "Test SDF Network ; September 2015";
+  }
+  if (network === "PUBLIC" || network === "PUBLIC_NETWORK" || network === "Public Global Stellar Network ; September 2015") {
+    return "Public Global Stellar Network ; September 2015";
+  }
+  return STELLAR_CONFIG.networkPassphrase;
+}
+
 export const STELLAR_NETWORK = {
   network: STELLAR_CONFIG.network,
   passphrase: STELLAR_CONFIG.networkPassphrase,
